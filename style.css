@@ -1,0 +1,50 @@
+*{
+    border: 0; margin: 0; box-sizing: border-box;
+}
+body{
+    background-color: rgb(165, 211, 211);
+    padding: 20px;
+    text-align: center;
+}
+main{
+    display: flex;
+    justify-content: space-around;
+}
+.jogadores{
+    padding: 20px;
+    background-color: aquamarine;
+    width: 250px; height: max-content;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.jogadores h2 {
+    padding: 0 5px 5px 5px;
+}
+.jogadores h3{
+    padding: 5px;
+}
+.jogadores input{
+    padding: 7px;
+    border-radius: 4px;
+}
+.jogadores button{
+    margin: 5px;
+    padding: 10px;
+}
+.jogadores button{
+    cursor: pointer;
+}
+.table{
+    background-color: aquamarine;
+    display: flex;
+}
+.box{
+    width: 100px; height: 100px;
+    background-color: aliceblue;
+    border: .3px solid black;
+    display: flex; justify-content: center; align-items: center; cursor: pointer;
+}
+.box:hover{
+    background-color: antiquewhite;
+}
