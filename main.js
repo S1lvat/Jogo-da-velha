@@ -1,102 +1,108 @@
-var jogX = document.getElementById('jogX')
-var jogO = document.getElementById('jogO')
-const submit = document.getElementById('submit')
 
-var box1 = document.getElementById('c1')
-var box2 = document.getElementById('c2')
-var box3 = document.getElementById('c3')
-var box4 = document.getElementById('c4')
-var box5 = document.getElementById('c5')
-var box6 = document.getElementById('c6')
-var box7 = document.getElementById('c7')
-var box8 = document.getElementById('c8')
-var box9 = document.getElementById('c9')
+var boxies = document.querySelectorAll('[id*=c]')
 
-var boxies = [box1, box2, box3, box4, box5, box6, box7, box8, box9]
-var jogadas = 0
-var ptJogX = 0
-var ptJogO = 0
+var Qpontos = document.getElementById("Qpontos")
+var Qjogadores = document.getElementById("jogadores")
 
- submit.addEventListener('click', ()=> {
-     var JogXName = jogX.value
-     var JogOName = jogO.value
+var nameX = document.getElementById("nameX")
+var nameO = document.getElementById("nameO")
+var ptjogX = document.getElementById("ptjogX")
+var ptjogO = document.getElementById("ptjogO")
 
-    function limpaJog(){
-        boxies.map(limpa=>{
-            limpa.value = ""
-            limpa.innerText = ""
-           })
+var submit = document.getElementById("submit")
+var reset = document.getElementById('reset')
+var emJogo = false
+var JogAtual = ''
+var Jogadas = 0
+
+var JogX = {
+    Nome: "",
+    Valor: "X",
+    pontos: 0
+}
+var JogO = {
+    Nome: "",
+    Valor: "O",
+    pontos: 0
+}
+    submit.addEventListener('click', ()=>{
+        JogX.Nome = document.getElementById("jogX").value
+        JogO.Nome = document.getElementById("jogO").value
         
+    if(!JogO.Nome || !JogX.Nome){
+        alert("Preencha todos os nomes!")
+    }else{
+        JogAtual = JogX
+        emJogo = true
+        Qjogadores.classList.add('hidden')
+        Qpontos.classList.remove('hidden')
+        AtualizaQD()
     }
-        var AtualJog = "X"
-     if(!JogOName || !JogXName){
-         alert("Preencha todos os nomes! ")
-     }
-     function SetVencedor(Atual){
-         alert(`Parabens ${Atual}`)
-         limpaJog()
-           jogadas = 0
-           var AtualJog = "X"
-     }
-     
-     boxies.forEach(element => {
-         element.addEventListener('click',()=>{
-             if(!element.value){
-                 element.value = AtualJog
-                 element.innerText = AtualJog
-                 jogadas ++
-                 
-                 //  Testando vitoria
-                //  Vertical 1
-                 if(box1.value == box2.value && box1.value == box3.value && box2.value == AtualJog){
-                     SetVencedor(AtualJog)
-                 }
-                 //  Vertical 2
-                  if(box4.value == box5.value && box5.value == box6.value && box4.value == AtualJog){
-                     SetVencedor(AtualJog)
-                  }
-                 //  Vertical 3
-                  if(box7.value == box8.value && box8.value == box9.value && box7.value == AtualJog){
-                     SetVencedor(AtualJog)
-                  }
-                 //  Horizontal 1 
-                  if(box1.value == box4.value && box4.value == box7.value && box1.value == AtualJog){
-                     SetVencedor(AtualJog)
-                  }
-                 //  Horizontal 2
-                  if(box2.value == box5.value && box5.value == box8.value && box2.value == AtualJog){
-                     SetVencedor(AtualJog)
-                  }
-                 //  Horizontal 3
-                  if(box3.value == box6.value && box6.value == box9.value && box3.value == AtualJog){
-                     SetVencedor(AtualJog)
-                  }
-                 
-                //  Diagonal 01
-                if(box5.value && box3.value && box5.value == box7.value && box5.value == AtualJog){
-                    SetVencedor(AtualJog)
-                }
-                // Diagonal 02
-                if(box5.value == box1.value && box5.value == box9.value && box5.value == AtualJog){
-                    SetVencedor(AtualJog)
-                }
-
-                if(jogadas == 9){
-                    limpaJog()
-                    console.log("Deu velha!")
-                    jogadas = 0
-                }
-             
-             if(AtualJog == "X"){
-                     AtualJog = "O"
-                 }
-            
-             }
-
-        })
-     });
-    
 })
- 
+    reset.addEventListener('click', ()=> {
+        limpatabuleiro()
+    })
+function limpatabuleiro(){
+    boxies.forEach(box=>{
+        box.value = ''
+        box.innerHTML = ''
+        Jogadas = 0
+    })
+}
+function AtualizaQD(){
+    nameX.innerHTML = JogX.Nome
+    nameO.innerHTML = JogO.Nome
+    ptjogX.innerHTML = JogX.pontos
+    ptjogO.innerHTML = JogO.pontos
+}
+function setValor(box){
+    box.value = JogAtual.Valor
+    box.innerHTML = JogAtual.Valor
+    Jogadas++
+}
+function vencedor(box, nome){
+    if(box == JogO.Valor){
+        JogO.pontos ++
+    }
+    if(box == JogX.Valor){
+        JogX.pontos ++
+    }
+    AtualizaQD()
+    alert(`Ponto para ${nome.Nome}`)
+    limpatabuleiro()
+}
+function testWin(box){
+    if((boxies[0].value == box && boxies[1].value == box && boxies[2].value == box) ||
+       (boxies[0].value == box && boxies[3].value == box && boxies[6].value == box) ||
+       (boxies[1].value == box && boxies[4].value == box && boxies[7].value == box) ||
+       (boxies[2].value == box && boxies[5].value == box && boxies[8].value == box) ||
+       (boxies[3].value == box && boxies[4].value == box && boxies[5].value == box) ||
+       (boxies[6].value == box && boxies[7].value == box && boxies[8].value == box) || 
+       (boxies[4].value == box && boxies[2].value == box && boxies[6].value == box || 
+        boxies[4].value == box && boxies[0].value == box && boxies[8].value == box ))
+        {
+         vencedor(box, JogAtual)
+       }
+    return false
+}
+function testvelha(){
+    if(Jogadas == 9 && testWin() == false){
+        alert("Deu velha!")
+        Jogadas = 0
+        limpatabuleiro()
+    }
+}
+boxies.forEach(box => {
+    box.addEventListener('click', ()=>{
+        if(emJogo && !box.value){
+        setValor(box)
+        
+        // Testar vitoria
+        testWin(JogAtual.Valor)
 
- 
+        testvelha(box)
+        
+        JogAtual = (JogAtual == JogX)?JogO:JogX
+        }
+    })
+})

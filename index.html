@@ -10,33 +10,58 @@
 <body>
     <h1>Jogo da velha</h1>
     <main>
-        <div class="jogadores">
+        <aside class="tabelaNome_pt">
+        <div id="jogadores" class="jogadores">
             <h2>Jogadores</h2>
             <h3>Jogador X</h3>
             <input type="text" id="jogX">
             <h3>Jogador O</h3>
             <input type="text" id="jogO">
-            <button type="submit" id="submit">Começar!</button>
+            <button type="submit" id="submit" class="btn">Começar!</button>
+            
         </div>
-        <div class="table">
-            <div id="line1">
-                <div class="box" id="c1" value=""></div>
-                <div class="box" id="c2" value=""></div>
-                <div class="box" id="c3" value=""></div> 
+
+        <div id="Qpontos" class="hidden"> 
+            <h2>Quadro de pontos</h2>
+            <div class="QNP">
+                <div >
+                    <h3 class="nome" id="nameX" ></h3>
+                    <p class="pontos" id="ptjogX"></p>
+                </div>
+                <div >
+                    <h3 class="nome" id="nameO" ></h3>
+                    <div class="pontos" id="ptjogO"></div>
+                </div>
+
             </div>
-            <div id="line2">
-                <div class="box" id="c4" value=""></div>
-                <div class="box" id="c5" value=""></div>
-                <div class="box" id="c6" value=""></div> 
-            </div>
-            <div id="line3">
-                <div class="box" id="c7" value=""></div>
-                <div class="box" id="c8" value=""></div>
-                <div class="box" id="c9" value=""></div>
+            
+            <button type="submit" id="reset" class="btn">Limpar tabuleiro</button>
+        </div>
+
+    </aside>
+    
+    <div class="table">
+        <div id="line1">
+            <div class="box" id="c1" value=""></div>
+            <div class="box" id="c2" value=""></div>
+            <div class="box" id="c3" value=""></div> 
+        </div>
+        <div id="line2">
+            <div class="box" id="c4" value=""></div>
+            <div class="box" id="c5" value=""></div>
+            <div class="box" id="c6" value=""></div> 
+        </div>
+        <div id="line3">
+            <div class="box" id="c7" value=""></div>
+            <div class="box" id="c8" value=""></div>
+            <div class="box" id="c9" value=""></div>
             </div>
         </div>
     </main>
-
-    <script src="main.js"></script>
+<footer>
+    <h3>Desenvolvido por: <strong>Tiago da Silva</strong></h3>
+    
+</footer>
+<script src="main.js"></script>
 </body>
 </html>

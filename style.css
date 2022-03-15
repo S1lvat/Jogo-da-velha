@@ -1,22 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 *{
     border: 0; margin: 0; box-sizing: border-box;
+    font-family: 'Varela Round', sans-serif;
 }
 body{
     background-color: rgb(165, 211, 211);
     padding: 20px;
     text-align: center;
 }
+body h1{
+    padding: 30px;
+}
 main{
     display: flex;
     justify-content: space-around;
+    background-color: transparent;
+}
+.tabelaNome_pt{
+    background-color: aquamarine;
+    height: max-content; width: auto;
+    padding: 5px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #666;
 }
 .jogadores{
-    padding: 20px;
+    padding: 5px 20px;
     background-color: aquamarine;
     width: 250px; height: max-content;
     display: flex;
     flex-direction: column;
     text-align: center;
+    
 }
 .jogadores h2 {
     padding: 0 5px 5px 5px;
@@ -28,23 +42,41 @@ main{
     padding: 7px;
     border-radius: 4px;
 }
-.jogadores button{
-    margin: 5px;
+.QNP{
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+.nome{
     padding: 10px;
 }
-.jogadores button{
+.pontos{
+    transform: scale(1.1);
+}
+.btn{
     cursor: pointer;
+    border-radius: 3px;
+    box-shadow: 0 0 5px #666;
+    margin: 10px 0 5px 0;
+    padding: 10px;
+}
+.hidden{
+    display: none;
 }
 .table{
-    background-color: aquamarine;
+    box-shadow: 0 0 10px #666;
     display: flex;
+    height: max-content; width: max-content;
 }
 .box{
     width: 100px; height: 100px;
     background-color: aliceblue;
-    border: .3px solid black;
+    border: .1px solid black;
     display: flex; justify-content: center; align-items: center; cursor: pointer;
 }
 .box:hover{
     background-color: antiquewhite;
+}
+footer{
+    padding: 50px;
 }
