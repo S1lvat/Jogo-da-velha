@@ -3,6 +3,7 @@ var boxies = document.querySelectorAll('[id*=c]')
 
 var Qpontos = document.getElementById("Qpontos")
 var Qjogadores = document.getElementById("jogadores")
+var whoplays = document.getElementById("whoplays")
 
 var nameX = document.getElementById("nameX")
 var nameO = document.getElementById("nameO")
@@ -54,10 +55,12 @@ function AtualizaQD(){
     nameO.innerHTML = JogO.Nome
     ptjogX.innerHTML = JogX.pontos
     ptjogO.innerHTML = JogO.pontos
+    whoplays.innerHTML = `Quem joga é: ${JogAtual.Nome}`
 }
 function setValor(box){
     box.value = JogAtual.Valor
     box.innerHTML = JogAtual.Valor
+    AtualizaQD()
     Jogadas++
 }
 function vencedor(box, nome){
@@ -103,6 +106,7 @@ boxies.forEach(box => {
         testvelha(box)
         
         JogAtual = (JogAtual == JogX)?JogO:JogX
+        AtualizaQD()
         }
     })
 })
